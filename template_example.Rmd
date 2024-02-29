@@ -12,7 +12,7 @@ output:
 # ("AnalyzeResp")
 # install.packages("devtools")
 # library(devtools)
-devtools::install_github("kraskura/AnalyzeResp", force = TRUE)
+#devtools::install_github("kraskura/AnalyzeResp", force = TRUE)
 library(AnalyzeResp)
 # other libraries, dependencies:
 library(pacman)
@@ -44,7 +44,7 @@ organizeAnalysisLocally()
 
 ```{r messages = F, warning=F}
 
-textFileConvert(txt_file = "apr13_2023_box1_crayfish_tap_test1_mmr.csv",
+textFileConvert(txt_file = "2023-11-08_180320_110823_19_coryontiles.txt",
                 local_path = FALSE,
                 type_file = "Firesting_2023",
                 N_Ch = 4,
@@ -103,13 +103,13 @@ textFileConvert(txt_file = "apr13_2023_box1_crayfish_tap_test1_mmr.csv",
 
 ```{r}
 
-SMR(data = "apr13_2023_box1_crayfish_tap_test1_smr2.csv",
-    cycle_end = 15, #minutes
+SMR(data = "2023-11-08_180320_110823_19_coryontiles_converted.csv",
+    cycle_end = 30, #minutes
     cycle_start = 1,
     first_cycle = "flush",
-    chop_start = 0, #take x seconds off from beginning and end of measurement period
+    chop_start = 60, #take x seconds off from beginning and end of measurement period
     chop_end = 0,
-    date_format = c("%m/%d/%Y %H:%M:%S", "GMT"), # PDT
+    date_format = c("%d/%m/%Y %H:%M:%S", "GMT"), # PDT
     local_path = FALSE,
     background_data = FALSE, #TRUE if file is background.
     sda_data = FALSE) #always false
