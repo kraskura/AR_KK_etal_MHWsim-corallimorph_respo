@@ -13,7 +13,7 @@
 # devtools::install_github("kraskura/AnalyzeResp", force = TRUE)
 # 3 # dont install packages s/ change as needed 
 # 
-# # other libraries, dependencies:
+# # other libraries, dependencies: 
 library(pacman)
 p_load(stats, ggplot2, scales, grDevices, graphics, utils,
        dplyr, magrittr, pryr, tidyr, plotrix, mclust,
@@ -34,7 +34,7 @@ summary.file<- summary.file %>%
 # take out empty runs (tile is used as a background)
 summary.file<- summary.file %>% 
   filter(!Run == "Empty") %>% 
-  mutate(indivID = paste(Genet, Tank, sep = ""))
+  mutate(indivID = paste(Box, "-", Genet, Tank, "-P", Polyps, sep = ""))
 
 # view(summary.file)
 # volumes 
@@ -55,7 +55,7 @@ for(i in 1:length(smr.files)){
   back.file0<-back.files[grepl(gsub("cory", "tile",   gsub("^.{30}", "", smr.file0)), back.files)]
   file.match.id<-gsub("_cory.*", "", gsub("^.{25}", "", smr.file0))
   
-  print(c("*** pairs:", smr.file0, back.file0, "***"))
+  # print(c("*** pairs:", smr.file0, back.file0, "***"))
   
   if(length(smr.file0) < 1) {
     print("next")
@@ -103,22 +103,22 @@ for(i in 1:length(smr.files)){
                           summary.file$Run == "Corynactis" & 
                           summary.file$Box == "B" &
                           summary.file$Channel == "1", "indivID"])
-        if(rlang::is_empty(ch1.id) == 0){ch1.id<- NA}
+        if(rlang::is_empty(ch1.id)){ch1.id<- NA}
       ch2.id<-as.character(summary.file[grepl(file.match.id, summary.file$Filename)  &
                           summary.file$Run == "Corynactis" & 
                           summary.file$Box == "B" &
                           summary.file$Channel == "2", "indivID"])
-        if(rlang::is_empty(ch2.id) == 0){ch2.id<- NA}
+        if(rlang::is_empty(ch2.id)){ch2.id<- NA}
       ch3.id<-as.character(summary.file[grepl(file.match.id, summary.file$Filename)  &
                           summary.file$Run == "Corynactis" & 
                           summary.file$Box == "B" &
                           summary.file$Channel == "3", "indivID"])
-        if(rlang::is_empty(ch3.id) == 0){ch3.id<- NA}
+        if(rlang::is_empty(ch3.id)){ch3.id<- NA}
       ch4.id<-as.character(summary.file[grepl(file.match.id, summary.file$Filename)  &
                           summary.file$Run == "Corynactis" & 
                           summary.file$Box == "B" &
                           summary.file$Channel == "4", "indivID"])
-        if(rlang::is_empty(ch4.id) == 0){ch4.id<- NA}
+        if(rlang::is_empty(ch4.id)){ch4.id<- NA}
       # IDs<-c(ch1.id, ch2.id, ch3.id, ch4.id)
       
       
@@ -165,28 +165,29 @@ for(i in 1:length(smr.files)){
                           summary.file$Run == "Corynactis" & 
                           summary.file$Box == "A" &
                           summary.file$Channel == "1", "indivID"])
-        if(rlang::is_empty(ch1.id) == 0){ch1.id<- NA}
+        if(rlang::is_empty(ch1.id)){ch1.id<- NA}
       ch2.id<-as.character(summary.file[grepl(file.match.id, summary.file$Filename)  &
                           summary.file$Run == "Corynactis" & 
                           summary.file$Box == "A" &
                           summary.file$Channel == "2", "indivID"])
-        if(rlang::is_empty(ch2.id) == 0){ch2.id<- NA}
+        if(rlang::is_empty(ch2.id)){ch2.id<- NA}
       ch3.id<-as.character(summary.file[grepl(file.match.id, summary.file$Filename)  &
                           summary.file$Run == "Corynactis" & 
                           summary.file$Box == "A" &
                           summary.file$Channel == "3", "indivID"])
-        if(rlang::is_empty(ch3.id) == 0){ch3.id<- NA}
+        if(rlang::is_empty(ch3.id)){ch3.id<- NA}
       ch4.id<-as.character(summary.file[grepl(file.match.id, summary.file$Filename)  &
                           summary.file$Run == "Corynactis" & 
                           summary.file$Box == "A" &
                           summary.file$Channel == "4", "indivID"])
-        if(rlang::is_empty(ch4.id) == 0){ch4.id<- NA}
+        if(rlang::is_empty(ch4.id)){ch4.id<- NA}
       # IDs<-c(ch1.id, ch2.id, ch3.id, ch4.id)
       
       if(all(is.na(unlist(c(ch1/1000, ch2/1000, ch3/1000, ch4/1000))))){
         message("not analyzed, no masses")
         next
       }else{
+        print(unlist(c(ch1.id, ch2.id, ch3.id, ch4.id)))
         # Analysis function run: 
         MMR_SMR_AS_EPOC(data.SMR = smr.file,
                     AnimalID = unlist(c(ch1.id, ch2.id, ch3.id, ch4.id)),
