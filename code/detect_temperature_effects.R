@@ -1,4 +1,4 @@
-# Author: Krista Kraskura (used Meta AI to facilitate coding)
+# Author: Krista Kraskura 
 # Last update: Apr 2024
 # Title: Characterising temperature effects in the system, facilitating functions. 
 

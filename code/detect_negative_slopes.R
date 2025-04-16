@@ -1,4 +1,4 @@
-# Author:Krista Kraskura (used Meta AI to facilitate coding)
+# Author:Krista Kraskura
 # Last update: Feb 4 2024
 # Title: Respo analysis, facilitating functions. 
 # 
