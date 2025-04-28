@@ -30,7 +30,6 @@ list_csv_files <- paste(here("MMR_SMR_AS_EPOC", "csv_analyzed_SMR/"),
 # compile all data in one dataframe and add filename
 data.rmr <- do.call(rbind, lapply(list_csv_files, function(x) cbind(read.csv(x), filename=gsub("^.{114}", "", x))))
 
-
 # VOLUMES: 
 # With tile, probe, and stir bar: 88 mL
 # Without tile (but with probe and stir bar): 93 mL 
